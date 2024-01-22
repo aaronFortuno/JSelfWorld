@@ -62,6 +62,10 @@ class Graph {
         return segments;
     }
 
+    dispose() {
+        this.points.length = 0;
+        this.segments.length = 0;
+    }
 
     draw(context) {
         for (const seg of this.segments) {
