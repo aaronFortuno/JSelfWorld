@@ -4,6 +4,7 @@ class Graph {
         this.segments = segments;
     }
 
+    // ADDING POINTS
     addPoint(point) {
         this.points.push(point);
     }
@@ -20,6 +21,7 @@ class Graph {
         return false;
     }
 
+    // ADDING SEGMENTS
     addSegment(seg) {
         this.segments.push(seg);
     }
@@ -34,6 +36,11 @@ class Graph {
             return true;
         }
         return false;
+    }
+
+    // REMOVING SEGMENTS
+    removeSegment(segment) {
+        this.segments.splice(this.segments.indexOf(segment), 1);
     }
 
     draw(context) {
