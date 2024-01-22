@@ -21,6 +21,15 @@ class Graph {
         return false;
     }
 
+    // REMOVING POINTS
+    removePoint(point) {
+        const segments = this.getSegmentsWithPoint(point);
+        for (const segment of segments) {
+            this.removeSegment(segment);
+        }
+        this.points.splice(this.points.indexOf(point), 1);
+    }
+
     // ADDING SEGMENTS
     addSegment(seg) {
         this.segments.push(seg);
@@ -42,6 +51,17 @@ class Graph {
     removeSegment(segment) {
         this.segments.splice(this.segments.indexOf(segment), 1);
     }
+
+    getSegmentsWithPoint(point) {
+        const segments = [];
+        for (const segment of this.segments) {
+            if (segment.includes(point)) {
+                segments.push(segment);
+            }
+        }
+        return segments;
+    }
+
 
     draw(context) {
         for (const seg of this.segments) {
