@@ -27,15 +27,8 @@ class GraphEditor {
 
     // PRIVATE METHODS
     #addEventListeners() {
-        this.canvas.addEventListener("mousedown", this.#handleMouseDown);
-        this.canvas.addEventListener("mousemove", (event) => {
-            this.mouse = new Point(event.offsetX, event.offsetY);
-            this.hovered = getNearestPoint(this.mouse, this.graph.points, 20);
-            if (this.dragging == true) {
-                this.selected.x = this.mouse.x;
-                this.selected.y = this.mouse.y;
-            }
-        });
+        this.canvas.addEventListener("mousedown", this.#handleMouseDown.bind(this));
+        this.canvas.addEventListener("mousemove", this.#handleMouseMove.bind(this));
         this.canvas.addEventListener("contextmenu", (event) => event.preventDefault());
         this.canvas.addEventListener("mouseup", (event) => this.dragging = false);
     }
@@ -57,6 +50,15 @@ class GraphEditor {
             this.graph.addPoint(this.mouse);
             this.#select(this.mouse);
             this.hovered = this.mouse;
+        }
+    }
+
+    #handleMouseMove() {
+        this.mouse = new Point(event.offsetX, event.offsetY);
+        this.hovered = getNearestPoint(this.mouse, this.graph.points, 20);
+        if (this.dragging == true) {
+            this.selected.x = this.mouse.x;
+            this.selected.y = this.mouse.y;
         }
     }
 
