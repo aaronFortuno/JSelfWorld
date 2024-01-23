@@ -37,7 +37,7 @@ class GraphEditor {
         this.canvas.addEventListener("mousedown", this.#handleMouseDown.bind(this));
         this.canvas.addEventListener("mousemove", this.#handleMouseMove.bind(this));
         this.canvas.addEventListener("contextmenu", (event) => event.preventDefault());
-        this.canvas.addEventListener("mouseup", (event) => this.dragging = false);
+        this.canvas.addEventListener("mouseup", () => this.dragging = false);
     }
 
     #handleMouseDown(event) {

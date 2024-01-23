@@ -45,7 +45,10 @@ class Polygon {
         for (let i = 0; i < segs1.length; i++) {
             for (let j = 0; j < segs2.length; j++) {
                 const int = getIntersection(
-                    segs1[i].p1, segs1[i].p2, segs2[j].p1, segs2[j].p2
+                    segs1[i].p1,
+                    segs1[i].p2,
+                    segs2[j].p1,
+                    segs2[j].p2
                 );
 
                 if (int && int.offset != 1 && int.offset != 0) {
@@ -60,6 +63,14 @@ class Polygon {
                 }
             }
         }
+    }
+
+    distanceToPoint(point) {
+        return Math.min(...this.segments.map((s) => s.distanceToPoint(point)));
+    }
+
+    distanceToPoly(poly) {
+        return Math.min(...this.points.map((p) => poly.distanceToPoint(p)));
     }
 
     intersectsPoly(poly) {
@@ -96,7 +107,10 @@ class Polygon {
         }
     }
 
-    draw(context, { stroke = "blue", lineWidth = 2, fill = "rgba(0, 0, 255, 0.3)" } = {}) {
+    draw(
+        context,
+        { stroke = "blue", lineWidth = 2, fill = "rgba(0, 0, 255, 0.3)" } = {}
+    ) {
         context.beginPath();
         context.fillStyle = fill;
         context.strokeStyle = stroke;

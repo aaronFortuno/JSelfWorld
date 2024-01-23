@@ -55,7 +55,7 @@ class Viewport {
     }
 
     #handleMouseDown(event) {
-        if (event.button == 1) {
+        if (event.button == 1) { // middle button
             this.drag.start = this.getMouse(event);
             this.drag.active = true;
         }
@@ -71,7 +71,7 @@ class Viewport {
     #handleMouseUp(event) {
         if (this.drag.active) {
             this.offset = add(this.offset, this.drag.offset);
-            this.drag.active = false;
+            // this.drag.active = false;
             this.drag = {
                 start: new Point(0, 0),
                 end: new Point(0, 0),

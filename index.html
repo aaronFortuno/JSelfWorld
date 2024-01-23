@@ -45,16 +45,20 @@
         const graph = graphInfo
             ? Graph.load(graphInfo)
             : new Graph([p1, p2, p3, p4], [s1, s2, s3, s4]);
-        const world = new World(graph, 100, 10);
+        const world = new World(graph);
 
         const viewport = new Viewport(myCanvas);
         const graphEditor = new GraphEditor(viewport, graph);
 
+        let oldGraphHash = graph.hash();
         animate();
 
         function animate() {
             viewport.reset();
-            world.generate();
+            if (graph.hash() != oldGraphHash) {
+                world.generate();
+                oldGraphHash = graph.hash();
+            }
             world.draw(context);
             context.globalAlpha = 0.3;
             graphEditor.display();
