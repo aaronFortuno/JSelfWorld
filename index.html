@@ -11,6 +11,7 @@
     <div id="controls">
         <button onclick="dispose()">Dispose</button>
         <button onclick="save()">Save</button>
+        <button onclick="cleanStorage()">Clean storage</button>
     </div>
 
     <script src="js/world.js"></script>
@@ -65,6 +66,10 @@
 
         function save() {
             localStorage.setItem("graph", JSON.stringify(graph));
+        }
+
+        function cleanStorage() {
+            localStorage.removeItem("graph");
         }
     </script>
 </body>
