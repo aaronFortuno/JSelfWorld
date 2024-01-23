@@ -23,6 +23,10 @@ function lerp(a, b, t) {
     return a + (b -a) * t;
 }
 
+function lerp2D(A, B, t) {
+    return new Point(lerp(A.x, B.x, t), lerp(A.y, B.y, t));
+}
+
 function getNearestPoint(loc, points, threshold = Number.MAX_SAFE_INTEGER) {
     let minDist = Number.MAX_SAFE_INTEGER;
     let nearest = null;

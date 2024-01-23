@@ -9,14 +9,16 @@
     <h1>World Editor</h1>
     <canvas id="myCanvas"></canvas>
     <div id="controls">
-        <button onclick="dispose()">Dispose</button>
-        <button onclick="save()">Save</button>
+        <button onclick="dispose()">🗑️</button>
+        <button onclick="save()">💾</button>
         <button onclick="cleanStorage()">Clean storage</button>
     </div>
 
     <script src="js/world.js"></script>
     <script src="js/graphEditor.js"></script>
     <script src="js/viewport.js"></script>
+    <script src="js/items/tree.js"></script>
+    <script src="js/items/building.js"></script>
     <script src="js/math/graph.js"></script>
     <script src="js/math/utils.js"></script>
     <script src="js/primitives/point.js"></script>
@@ -59,7 +61,8 @@
                 world.generate();
                 oldGraphHash = graph.hash();
             }
-            world.draw(context);
+            const viewPoint = scale(viewport.getOffset(), -1);
+            world.draw(context, viewPoint);
             context.globalAlpha = 0.3;
             graphEditor.display();
             requestAnimationFrame(animate);
