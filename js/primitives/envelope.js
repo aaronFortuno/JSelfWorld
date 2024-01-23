@@ -4,8 +4,8 @@ class Envelope {
         this.poly = this.#generatePolygon(width, roundness);
     }
 
-    draw(context) {
-        this.poly.draw(context);
+    draw(context, options) {
+        this.poly.draw(context, options);
     }
 
     #generatePolygon(width, roundness) {
