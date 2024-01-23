@@ -8,10 +8,10 @@ class Point {
         return this.x == point.x && this.y == point.y;
     }
 
-    draw(context, { size = 18, color = "black", outline = false } = {}) {
+    draw(context, { size = 18, color = "black", outline = false, fill = false } = {}) {
         const rad = size / 2;
         context.beginPath();
-        context.fillPath = color;
+        context.fillStyle = color;
         context.arc(this.x, this.y, rad, 0, Math.PI * 2);
         context.fill();
         if (outline) {
@@ -20,6 +20,12 @@ class Point {
             context.strokeStyle = "yellow";
             context.arc(this.x, this.y, rad * 0.6, 0, Math.PI * 2);
             context.stroke();
+        }
+        if (fill) {
+            context.beginPath();
+            context.arc(this.x, this.y, rad * 0.4, 0, Math.PI * 2);
+            context.fillStyle = "yellow";
+            context.fill();
         }
     }
 }
